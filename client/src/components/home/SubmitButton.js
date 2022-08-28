@@ -15,7 +15,7 @@ function SubmitButton({submitVideo}) {
                   hover:bg-main-orange hover:text-orange-100"
 			>
 				<span className="mt-2 text-base leading-normal select-none">Submit</span>
-                <button onClick={handleSubmit} type="submit" class="hidden" ></button>
+                <button onClick={handleSubmit} type="submit" className="hidden" ></button>
 
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

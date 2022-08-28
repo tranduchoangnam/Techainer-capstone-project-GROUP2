@@ -1,8 +1,8 @@
 import "./App.css";
-import Header from "./components/Header";
-import Content from "./components/Content";
+import Header from "./components/header/Header";
+import Content from "./components/home/Content";
 import { Route, Routes } from "react-router-dom";
-import About from "./components/About";
+import About from "./components/about/About";
 import NotFound from "./components/NotFound";
 function App() {
 	return (
@@ -13,7 +13,7 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path="/" element={<Content />} />
-				<Route path="/about" element={<About />} />
+				<Route path="/about/*" element={<About />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</div>

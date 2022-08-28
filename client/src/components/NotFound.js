@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Countdown from 'react-countdown';
+import Countdown from "react-countdown";
 function NotFound() {
 	const navigate = useNavigate();
-    const timeout = 10000;
+	const timeout = 10000;
+
 	useEffect(() => {
-		setTimeout(() => {
+		let timer = setTimeout(() => {
 			navigate("/");
 		}, timeout);
-	});
+		return () => clearTimeout(timer);
+	},[navigate]);
 
 	return (
 		<div
@@ -20,7 +22,17 @@ function NotFound() {
 		>
 			<div className="text-main-orange font-bold text-9xl">404</div>
 			Hmmmmmm... Can't seem to find the page you are looking for
-            <Countdown date={Date.now() + timeout} />
+			<div className="flex flex-row gap-3">
+				Going back to homepage in:
+				<Countdown 
+				date={Date.now() + timeout}
+				renderer={({seconds})=>{
+					return <div>
+						{`${seconds}s`}
+					</div>
+				}} 
+				/>
+			</div>
 		</div>
 	);
 }
