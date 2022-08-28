@@ -1,16 +1,22 @@
 import React from "react";
+import { file } from "./FileInput";
 
-function SubmitButton() {
-	return (
+function SubmitButton({submitVideo}) {
+
+    const handleSubmit = () => {
+        submitVideo(file);
+    }
+    return (
 		<div className="flex flex-row-reverse w-full h-auto items-center">
 			<label
-				className="w-auto flex flex-row items-center px-4 pt-2 pb-3 bg-orange-300 
+				className="w-auto flex flex-row items-center px-4 pt-2 pb-3 bg-orange-300  hover:scale-105
                     text-blue rounded-lg shadow-lg tracking-wide uppercase 
                     border border-blue cursor-pointer mr-6
-                  hover:bg-orange-800 hover:text-white"
+                  hover:bg-main-orange hover:text-orange-100"
 			>
-				<span className="mt-2 text-base leading-normal">Submit</span>
-				<input type="submit" class="hidden" />
+				<span className="mt-2 text-base leading-normal select-none">Submit</span>
+                <button onClick={handleSubmit} type="submit" class="hidden" ></button>
+
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 20 20"

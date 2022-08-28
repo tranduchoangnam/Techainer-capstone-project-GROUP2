@@ -19,12 +19,12 @@ function FileInput() {
 		<>
 			<div className="flex w-full h-auto items-center">
 				<label
-					className="w-auto flex flex-row items-center px-4 pt-2 pb-3 bg-blue-300 
-                    text-blue rounded-lg shadow-lg tracking-wide uppercase 
+					className="w-auto flex flex-row items-center px-4 pt-2 pb-3 bg-main-blue-ice hover:scale-105
+                    text-main-blue-dark rounded-lg shadow-lg tracking-wide uppercase 
                     border border-blue cursor-pointer  ml-6
-                  hover:bg-blue-800 hover:text-white"
+                  hover:bg-main-blue hover:text-main-blue-ice"
 				>
-					<span className="mt-2 text-base leading-normal">Upload a video</span>
+					<span className="mt-2 text-base leading-normal select-none">Upload a video</span>
 
 					<form>
 						<input
