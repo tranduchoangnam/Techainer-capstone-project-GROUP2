@@ -13,7 +13,7 @@ function Logo() {
 					alt="img"
 					className="h-20"
 				/>
-			</Link>
+	</Link>
   )
 }
 

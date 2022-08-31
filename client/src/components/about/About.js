@@ -2,6 +2,7 @@ import React from "react";
 import DepartmentList from "./DepartmentList";
 import { Route, Routes } from "react-router-dom";
 // import Normalize from "../../modules/Normalize";
+import Member from "./Member";
 
 function About() {
 	const softwareList = [
@@ -12,9 +13,11 @@ function About() {
 	const aiList = ["Trịnh Văn Chiến", "Cù Minh Hoàng", "Hồ Minh Khôi"];
 	return (
 		<div
-			className="bg-blue-50/95
+			className="bg-blue-50/95 py-24
+			items-center flex flex-col gap-20
 			min-h-screen h-fit w-screen min-w-fit 
-			scrollbar-hide overflow-auto"
+			scrollbar-hide overflow-auto
+			text-xl font-semibold"
 		>
 			<Routes>
 				<Route path="/">
@@ -25,7 +28,7 @@ function About() {
 						}
 					/>
 				</Route>
-
+				<Route path=":id" element={<Member />}></Route>
 			</Routes>
 		</div>
 	);

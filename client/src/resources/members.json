@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Nguyễn Trực Cường",
+        "department":"Software",
+        "details": "Nguyen Truc Cuong"
+    },
+    {
+        "name": "Trần Đức Hoàng Nam",
+        "department":"Software",
+        "details": ""
+    },
+    {
+        "name": "Lê Trần Thắng",
+        "department":"Software",
+        "details": ""
+    },
+    {
+        "name": "Trịnh Văn Chiến",
+        "department":"AI",
+        "details": ""
+    },
+    {
+        "name": "Cù Minh Hoàng",
+        "department":"AI",
+        "details": ""
+    },
+    {
+        "name": "Hồ Minh Khôi",
+        "department":"AI",
+        "details": ""
+    }
+]

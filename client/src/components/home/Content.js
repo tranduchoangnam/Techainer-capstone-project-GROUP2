@@ -10,7 +10,7 @@ function Content() {
 	};
 	return (
 		<div
-			className="bg-blue-50/95 pt-20 
+			className="bg-blue-50/95 pt-20
 						items-center justify-center 
 						min-h-screen h-fit w-1/2 min-w-fit 
 						scrollbar-hide overflow-auto mt-1/6"
@@ -20,9 +20,11 @@ function Content() {
 			</div>
 			<FileInput />
 			<SubmitButton submitVideo={submitVideo} />
-			<div className="mt-36">
-				<VideoPlayer src={"https://youtu.be/2xx_2XNxxfA"} />
+
+			<div className="flex flex-col items-center text-5xl mt-32 font-semibold text-sky-900">
+				Result
 			</div>
+			<VideoPlayer src={"https://youtu.be/2xx_2XNxxfA"} />
 		</div>
 	);
 }
