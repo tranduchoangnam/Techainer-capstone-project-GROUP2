@@ -12,7 +12,7 @@ function Department({ name, list }) {
 					return (
 						<Link to={`${name}-${Normalize(person)}`} key={key}>
 							<div
-								className="hover:bg-main-blue/50 p-3 rounded-md h-full"
+								className="duration-300 hover:bg-main-blue/50 p-3 rounded-md h-full"
 							>
 								<img src={require(null||"../../resources/logo.png")} alt="img" />
 								{person}

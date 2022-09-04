@@ -1,13 +1,8 @@
 import React from "react";
 import FileInput from "./FileInput";
 import VideoPlayer from "./VideoPlayer";
-import SubmitButton from "./SubmitButton";
 
 function Content() {
-	const submitVideo = file => {
-		if (!file) return;
-		console.log(`submitted ${file.name}`);
-	};
 	return (
 		<div
 			className="bg-blue-50/95 pt-20
@@ -16,15 +11,21 @@ function Content() {
 						scrollbar-hide overflow-auto mt-1/6"
 		>
 			<div className="flex flex-col items-center text-5xl m-6 font-semibold text-sky-900">
+				<img
+					src={require("../../resources/maskicon.png")}
+					alt="img"
+					className="h-20 select-none"
+				/>
 				Mask detection
 			</div>
 			<FileInput />
-			<SubmitButton submitVideo={submitVideo} />
 
 			<div className="flex flex-col items-center text-5xl mt-32 font-semibold text-sky-900">
 				Result
 			</div>
-			<VideoPlayer src={"https://youtu.be/2xx_2XNxxfA"} />
+			<div className="flex flex-col items-center m-6 h-auto bg-main-blue p-10 rounded-3xl shadow-lg">
+				<VideoPlayer src={"https://youtu.be/2xx_2XNxxfA" /*Placeholder*/} />
+			</div>
 		</div>
 	);
 }

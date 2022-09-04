@@ -1,56 +1,130 @@
+import axios from "axios";
 import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
+import Dropzone from "./Dropzone";
+import OrangeButton from "../buttons/OrangeButton";
+import BlueButton from "../buttons/BlueButton";
+import ProgressBar from "./ProgressBar";
+import MediaRecorder from "./MediaRecorder";
+import ClickSVG from "../svgComponents/ClickSVG";
+import VideoSVG from "../svgComponents/VideoSVG";
+import FolderSVG from "../svgComponents/FolderSVG";
 // import { useForm } from "react-hook-form";
-var file;
 function FileInput() {
+	//useState
 	const [videoSource, setVideoSource] = useState("");
-	// const [selectedVideo, setSelectedVideo] = useState("");
+	const [file, setFile] = useState(null);
+	const [progress, setProgress] = useState(0);
+	const [status, setStatus] = useState("idle");
+	const [uploadMethod, setUploadMethod] = useState("default");
 
+
+	let submitting = false;
+	//update the current video registered
 	const handleVideoInputChange = e => {
-		file = e.target.files[0];
-		if (!file) return;
-		console.log(file);
-		var url = URL.createObjectURL(file);
-		console.log(url);
-		setVideoSource(url);
+		try {
+			const videoFile = e.target ? e.target.files[0] : e;
+			if (!videoFile) return;
+			setFile(videoFile);
+			console.log("videoFile:");
+			console.log(videoFile);
+
+			var url = URL.createObjectURL(videoFile);
+
+			console.log("url");
+			console.log(url);
+			setVideoSource(url);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	//send the registered video
+	const handleSubmit = async e => {
+		e.preventDefault();
+		if (!file || submitting) return;
+		submitting = true;
+		try {
+			const formData = new FormData();
+			console.log(`submitted ${file.name}`);
+			console.log(file);
+			formData.append("file", file, file.name);
+
+			console.log("formData: ");
+			for (var pair of formData.entries()) {
+				console.log(pair[0] + ", " + pair[1]);
+			} //for inspection
+			setStatus("connecting"); 
+			const config = {
+				onUploadProgress: progressEvent => {
+					setProgress(
+						Math.round((progressEvent.loaded / progressEvent.total) * 100) //update sending to backend progress
+					);
+				},
+			};
+			const response = await axios
+				.post(
+					// `${process.env.REACT_APP_API_URL}/video`
+					`http://localhost:7777/video`,
+					formData,
+					config
+				)
+				.then(() => {
+					submitting = false;
+				});
+			console.log(response);
+		} catch (err) {
+			submitting = false;
+			setStatus("error");
+			console.log(err);
+		}
 	};
 
 	return (
 		<>
-			<div className="flex w-full h-auto items-center">
-				<label
-					className="w-auto flex flex-row items-center px-4 pt-2 pb-3 bg-main-blue-ice hover:scale-105
-                    text-main-blue-dark rounded-lg shadow-lg tracking-wide uppercase 
-                    border border-blue cursor-pointer  ml-6
-                  hover:bg-main-blue hover:text-main-blue-ice"
-				>
-					<span className="mt-2 text-base leading-normal select-none">Upload a video</span>
-
-					<form>
-						<input
-							type="file"
-							onChange={handleVideoInputChange}
-							className="hidden"
-						/>
-					</form>
-
-					{/* ICON  */}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 20 20"
-						fill="currentColor"
-						className="ml-2 mt-2 w-6 h-6"
-					>
-						<path d="M3.25 4A2.25 2.25 0 001 6.25v7.5A2.25 2.25 0 003.25 16h7.5A2.25 2.25 0 0013 13.75v-7.5A2.25 2.25 0 0010.75 4h-7.5zM19 4.75a.75.75 0 00-1.28-.53l-3 3a.75.75 0 00-.22.53v4.5c0 .199.079.39.22.53l3 3a.75.75 0 001.28-.53V4.75z" />
-					</svg>
-				</label>
+			<div className="flex flex-row w-full h-auto items-center">
+				<BlueButton
+				svg={<FolderSVG/>}
+					isSelected={uploadMethod === "default"}
+					text="Upload a Video"
+					handleSubmit={e => {
+						e.preventDefault();
+						setUploadMethod("default");
+						setVideoSource(null);
+					}}
+					/>
+				<BlueButton
+					svg={<VideoSVG/>}
+					isSelected={uploadMethod === "record"}
+					text="Record a Video"
+					handleSubmit={e => {
+						e.preventDefault();
+						setUploadMethod("record");
+						setVideoSource(null);
+					}}
+				/>
 			</div>
 
 			{/* VIDEO PREVIEW  */}
-			<VideoPlayer src={videoSource} />
+
+			<div className="flex flex-col items-center m-6 h-auto bg-main-blue p-10 rounded-3xl shadow-lg">
+				{videoSource ? (
+					<VideoPlayer src={videoSource} />
+				) : uploadMethod === "default" ? (
+					<Dropzone handleVideoInputChange={handleVideoInputChange} />
+				) : uploadMethod === "record" ? (
+					<MediaRecorder handleVideoInputChange={handleVideoInputChange}  />
+				) : (
+					""
+				)}
+			</div>
+
+			<div className="flex flex-row-reverse w-full h-auto items-center">
+				<OrangeButton svg={<ClickSVG/>} text={"Submit"} handleSubmit={handleSubmit} />
+				<ProgressBar status={status} progress={progress} />
+			</div>
 		</>
 	);
 }
 
-export { file };
 export default FileInput;

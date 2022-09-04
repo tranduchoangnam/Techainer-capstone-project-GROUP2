@@ -2,8 +2,13 @@ import React from "react";
 import ReactPlayer from "react-player";
 function VideoPlayer({ src }) {
 	return (
-		<div className="flex flex-col items-center m-6 h-auto bg-main-blue-dark p-10 rounded-3xl shadow-lg">
-			<ReactPlayer controls url={src || "https://youtu.be/dQw4w9WgXcQ"} />
+		<div className="overflow-hidden rounded-md h-80 max-w-screen-sm">
+			<ReactPlayer
+				height="100%"
+				controls
+				url={src}
+			/>
+			;
 		</div>
 	);
 }

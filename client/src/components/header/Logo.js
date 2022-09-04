@@ -11,7 +11,7 @@ function Logo() {
 				<img
 					src={require("../../resources/logo.png")}
 					alt="img"
-					className="h-20"
+					className="h-20 select-none"
 				/>
 	</Link>
   )
