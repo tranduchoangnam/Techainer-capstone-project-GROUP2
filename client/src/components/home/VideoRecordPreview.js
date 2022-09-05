@@ -11,9 +11,8 @@ function VideoRecordPreview({ stream }) {
 		return "";
 	}
 	return stream ? (
-		<div className="overflow-hidden rounded-md h-80 w-auto">
-			<video ref={videoRef} autoPlay />
-		</div>
+			<video className="overflow-hidden rounded-md h-80 w-fit" ref={videoRef} autoPlay />
+
 	) : (
 		""
 	);

@@ -40,7 +40,7 @@ function Dropzone({ handleVideoInputChange }) {
 			</h2>
 
 			<p className="mt-2 text-gray-500 tracking-wide">
-				Upload or drag & drop your .MP4 file{" "}
+				Click to upload or drag & drop your .MP4 file here{" "}
 			</p>
 
 			<input

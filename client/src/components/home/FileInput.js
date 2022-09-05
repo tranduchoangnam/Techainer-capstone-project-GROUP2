@@ -18,7 +18,6 @@ function FileInput() {
 	const [status, setStatus] = useState("idle");
 	const [uploadMethod, setUploadMethod] = useState("default");
 
-
 	let submitting = false;
 	//update the current video registered
 	const handleVideoInputChange = e => {
@@ -54,7 +53,7 @@ function FileInput() {
 			for (var pair of formData.entries()) {
 				console.log(pair[0] + ", " + pair[1]);
 			} //for inspection
-			setStatus("connecting"); 
+			setStatus("connecting");
 			const config = {
 				onUploadProgress: progressEvent => {
 					setProgress(
@@ -84,19 +83,19 @@ function FileInput() {
 		<>
 			<div className="flex flex-row w-full h-auto items-center">
 				<BlueButton
-				svg={<FolderSVG/>}
+					svg={<FolderSVG />}
 					isSelected={uploadMethod === "default"}
-					text="Upload a Video"
+					text="Upload"
 					handleSubmit={e => {
 						e.preventDefault();
 						setUploadMethod("default");
 						setVideoSource(null);
 					}}
-					/>
+				/>
 				<BlueButton
-					svg={<VideoSVG/>}
+					svg={<VideoSVG />}
 					isSelected={uploadMethod === "record"}
-					text="Record a Video"
+					text="Record"
 					handleSubmit={e => {
 						e.preventDefault();
 						setUploadMethod("record");
@@ -109,18 +108,25 @@ function FileInput() {
 
 			<div className="flex flex-col items-center m-6 h-auto bg-main-blue p-10 rounded-3xl shadow-lg">
 				{videoSource ? (
-					<VideoPlayer src={videoSource} />
+					<div className="text-main-blue-ice">
+						{"Video ready for submission!"}
+						<VideoPlayer src={videoSource} />
+					</div>
 				) : uploadMethod === "default" ? (
 					<Dropzone handleVideoInputChange={handleVideoInputChange} />
 				) : uploadMethod === "record" ? (
-					<MediaRecorder handleVideoInputChange={handleVideoInputChange}  />
+					<MediaRecorder handleVideoInputChange={handleVideoInputChange} />
 				) : (
 					""
 				)}
 			</div>
 
 			<div className="flex flex-row-reverse w-full h-auto items-center">
-				<OrangeButton svg={<ClickSVG/>} text={"Submit"} handleSubmit={handleSubmit} />
+				<OrangeButton
+					svg={<ClickSVG />}
+					text={"Submit"}
+					handleSubmit={handleSubmit}
+				/>
 				<ProgressBar status={status} progress={progress} />
 			</div>
 		</>

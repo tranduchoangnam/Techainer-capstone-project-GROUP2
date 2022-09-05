@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import VideoRecordPreview from "./VideoRecordPreview";
 import OrangeButton from "../buttons/OrangeButton";
+import BlueButton from "../buttons/BlueButton";
 import VideoPlayer from "./VideoPlayer";
 import PlaySVG from "../svgComponents/PlaySVG";
 import StopSVG from "../svgComponents/StopSVG";
@@ -11,19 +12,21 @@ function MediaRecorder({ handleVideoInputChange }) {
 		useReactMediaRecorder({ video: true, audio: false });
 
 	const [isRecording, setIsRecording] = useState(false);
-    useEffect(() => {
-        console.log(status);
-        return () => {};
-    }, [status]);
-    
+	useEffect(() => {
+		console.log(status);
+		return () => {};
+	}, [status]);
+
 	//convert blob url to blob
 	let UrlToFile = async url => {
-		let output = await fetch(url).then(
-			res => new File([res.blob()], "recorded video")
-		);
+		let output = await fetch(url)
+			.then(res => res.blob())//convert response to a blob
+			.then(blob => {
+				console.log("Blob: ", blob);//inspection
+				return new File([blob], `recorded_video_${new Date().getTime()}.mp4`);//blob to file
+			});
 		return output;
 	};
-
 
 	return (
 		<div className="flex flex-col gap-5">
@@ -38,7 +41,7 @@ function MediaRecorder({ handleVideoInputChange }) {
 						}}
 					/>
 				) : (
-					<OrangeButton
+					<BlueButton
 						svg={<PlaySVG />}
 						text={"Start Recording"}
 						handleSubmit={e => {
