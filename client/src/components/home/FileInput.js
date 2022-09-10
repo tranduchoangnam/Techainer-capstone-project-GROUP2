@@ -18,7 +18,9 @@ function FileInput() {
 	const [status, setStatus] = useState("idle");
 	const [uploadMethod, setUploadMethod] = useState("default");
 
+	//submitting status
 	let submitting = false;
+
 	//update the current video registered
 	const handleVideoInputChange = e => {
 		try {
@@ -45,8 +47,7 @@ function FileInput() {
 		submitting = true;
 		try {
 			const formData = new FormData();
-			console.log(`submitted ${file.name}`);
-			console.log(file);
+			console.log(`submitted ${file.name}`, file);
 			formData.append("file", file, file.name);
 
 			console.log("formData: ");
@@ -62,14 +63,9 @@ function FileInput() {
 				},
 			};
 			const response = await axios
-				.post(
-					// `${process.env.REACT_APP_API_URL}/video`
-					`http://localhost:7777/video`,
-					formData,
-					config
-				)
+				.post(`${process.env.REACT_APP_API_URL}/uploads`, formData, config)
 				.then(() => {
-					submitting = false;
+					submitting = false; //complete submission
 				});
 			console.log(response);
 		} catch (err) {
@@ -108,8 +104,8 @@ function FileInput() {
 
 			<div className="flex flex-col items-center m-6 h-auto bg-main-blue p-10 rounded-3xl shadow-lg">
 				{videoSource ? (
-					<div className="text-main-blue-ice">
-						{"Video ready for submission!"}
+					<div className="flex flex-col items-center text-main-blue-ice font-bold gap-4">
+						The video is ready for submission!
 						<VideoPlayer src={videoSource} />
 					</div>
 				) : uploadMethod === "default" ? (

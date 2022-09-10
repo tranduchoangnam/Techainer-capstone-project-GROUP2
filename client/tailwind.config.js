@@ -7,11 +7,18 @@ module.exports = {
 			colors: {
 				transparent: "transparent",
 				current: "currentColor",
-				"main-blue": "#3D5A80",
-				"main-blue-light": "#98C1D9",
-				"main-blue-ice": "#E0FBFC",
-				"main-blue-dark": "#293141",
-				"main-orange": "#EE6C4D",
+				"main-blue": {
+					DEFAULT: "#3D5A80",
+					light: "#98C1D9",
+					dark: "#293141",
+					ice: "#E0FBFC",
+				},
+
+				"main-orange": { 
+					DEFAULT: "#EE6C4D" ,
+					light: "#FFB191",
+					superlight: "#FAD7CF"
+			},
 			},
 		},
 	},

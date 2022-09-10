@@ -1,4 +1,3 @@
-
 import Header from "./components/header/Header";
 import Content from "./components/home/Content";
 import { Route, Routes } from "react-router-dom";
@@ -14,6 +13,19 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Content />} />
 				<Route path="/about/*" element={<About />} />
+				<Route
+					path="/test"
+					element={
+						<div
+							className="bg-blue-50/80 pt-20
+						items-center justify-center 
+						min-h-screen h-fit w-1/2 min-w-fit 
+						scrollbar-hide overflow-auto mt-1/6"
+						>
+							
+						</div>
+					}
+				/>
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</div>

@@ -5,7 +5,7 @@ import VideoPlayer from "./VideoPlayer";
 function Content() {
 	return (
 		<div
-			className="bg-blue-50/95 pt-20
+			className="bg-blue-50/80 pt-20
 						items-center justify-center 
 						min-h-screen h-fit w-1/2 min-w-fit 
 						scrollbar-hide overflow-auto mt-1/6"

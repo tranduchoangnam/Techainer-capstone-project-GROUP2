@@ -13,7 +13,7 @@ function About() {
 	const aiList = ["Trịnh Văn Chiến", "Cù Minh Hoàng", "Hồ Minh Khôi"];
 	return (
 		<div
-			className="bg-blue-50/95 py-24
+			className="bg-blue-50/50 py-24
 			items-center flex flex-col gap-20
 			min-h-screen h-fit w-screen min-w-fit 
 			scrollbar-hide overflow-auto
