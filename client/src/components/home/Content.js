@@ -1,19 +1,19 @@
 import FileInput from "./FileInput";
 import ImageGallery from "./ImageGallery";
-import { useState, useEffect } from "react";
-import testData from "../../resources/test.json";
+import { useState /*, useEffect*/ } from "react";
+// import testData from "../../resources/test.json";
 function Content() {
 	const [resultList, setResultList] = useState([]);
 	const ProcessResponse = res => {
 		if (!res) return;
-		res = testData;
+		// res = testData;
 		const list = JSON.parse(JSON.stringify(res));
 		console.log("list", list);
 		setResultList(list);
 	};
-	useEffect(() => {
-		ProcessResponse(1);
-	}, []);
+	// useEffect(() => {
+	// 	ProcessResponse(1);  //testing
+	// }, []);
 	return (
 		<div
 			className="bg-blue-50/80 pt-20
