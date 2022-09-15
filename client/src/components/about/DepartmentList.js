@@ -1,6 +1,6 @@
 import React from "react";
 import Department from "./Department";
-import Box from "./BoxComponent";
+import BoxComponent from "./BoxComponent";
 
 function DepartmentList({ softwareList, aiList }) {
 	return (
@@ -10,14 +10,8 @@ function DepartmentList({ softwareList, aiList }) {
 			text-xl font-semibold"
 		>
 			About us
-			<div
-				className="select-none flex flex-row
-					bg-main-blue-light rounded-lg"
-			>
-				<Box />
-				<Box />
-				<Box />
-				<Box />
+			<div className="select-none flex flex-row h-1/2 w-1/2 ">
+				<BoxComponent />
 			</div>
 			<Department key="1" name={"Software"} list={softwareList} />
 			<Department key="2" name={"AI"} list={aiList} />

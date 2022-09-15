@@ -1,8 +1,19 @@
-import React from "react";
 import FileInput from "./FileInput";
-import VideoPlayer from "./VideoPlayer";
-
+import ImageGallery from "./ImageGallery";
+import { useState, useEffect } from "react";
+import testData from "../../resources/test.json";
 function Content() {
+	const [resultList, setResultList] = useState([]);
+	const ProcessResponse = res => {
+		if (!res) return;
+		res = testData;
+		const list = JSON.parse(JSON.stringify(res));
+		console.log("list", list);
+		setResultList(list);
+	};
+	useEffect(() => {
+		ProcessResponse(1);
+	}, []);
 	return (
 		<div
 			className="bg-blue-50/80 pt-20
@@ -18,13 +29,14 @@ function Content() {
 				/>
 				Mask detection
 			</div>
-			<FileInput />
+			<FileInput ProcessResponse={ProcessResponse} />
 
 			<div className="flex flex-col items-center text-5xl mt-32 font-semibold text-sky-900">
 				Result
 			</div>
-			<div className="flex flex-col items-center m-6 h-auto bg-main-blue p-10 rounded-3xl shadow-lg">
-				<VideoPlayer src={"https://youtu.be/2xx_2XNxxfA" /*Placeholder*/} />
+
+			<div className="items-center m-6 h-auto bg-main-blue p-10 rounded-3xl shadow-lg">
+				<ImageGallery resultList={resultList} />
 			</div>
 		</div>
 	);

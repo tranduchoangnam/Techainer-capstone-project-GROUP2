@@ -20,7 +20,7 @@ function Member() {
 		>
 			{id}
 			<div>
-				<img src={require(null || "../../resources/logo.png")} alt="img" className="h-1/3" />
+				<img src={require(null || "../../resources/logo.png")} alt="img" className="h-auto" />
 				<div>Name: {name}</div>
 				<div>Department: {department}</div>
 				<div>Detail: {details}</div>

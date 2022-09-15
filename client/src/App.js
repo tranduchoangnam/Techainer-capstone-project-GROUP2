@@ -7,25 +7,13 @@ function App() {
 	return (
 		<div
 			className="w-screen h-screen flex flex-col justify-center items-center"
-			style={{ backgroundImage: "url(/img/bg.png)" }}
+			style={{ backgroundImage: "url(/img/bg.png)", backgroundSize: "auto" }}
 		>
 			<Header />
+			
 			<Routes>
 				<Route path="/" element={<Content />} />
 				<Route path="/about/*" element={<About />} />
-				<Route
-					path="/test"
-					element={
-						<div
-							className="bg-blue-50/80 pt-20
-						items-center justify-center 
-						min-h-screen h-fit w-1/2 min-w-fit 
-						scrollbar-hide overflow-auto mt-1/6"
-						>
-							
-						</div>
-					}
-				/>
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</div>

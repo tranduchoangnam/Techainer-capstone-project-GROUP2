@@ -10,16 +10,14 @@ import ClickSVG from "../svgComponents/ClickSVG";
 import VideoSVG from "../svgComponents/VideoSVG";
 import FolderSVG from "../svgComponents/FolderSVG";
 // import { useForm } from "react-hook-form";
-function FileInput() {
+function FileInput({ ProcessResponse }) {
 	//useState
 	const [videoSource, setVideoSource] = useState("");
 	const [file, setFile] = useState(null);
 	const [progress, setProgress] = useState(0);
 	const [status, setStatus] = useState("idle");
 	const [uploadMethod, setUploadMethod] = useState("default");
-
-	//submitting status
-	let submitting = false;
+	const [submitStatus, setSubmitStatus] = useState("idle");
 
 	//update the current video registered
 	const handleVideoInputChange = e => {
@@ -43,8 +41,9 @@ function FileInput() {
 	//send the registered video
 	const handleSubmit = async e => {
 		e.preventDefault();
-		if (!file || submitting) return;
-		submitting = true;
+		if (!file || submitStatus === "submitting" || submitStatus === "processing")
+			return; //no file or the client and/or server are doing sth else
+		setSubmitStatus("submitting");
 		try {
 			const formData = new FormData();
 			console.log(`submitted ${file.name}`, file);
@@ -58,18 +57,29 @@ function FileInput() {
 			const config = {
 				onUploadProgress: progressEvent => {
 					setProgress(
-						Math.round((progressEvent.loaded / progressEvent.total) * 100) //update sending to backend progress
+						Math.round((progressEvent.loaded / progressEvent.total) * 100) //set sending to backend progress
 					);
 				},
 			};
-			const response = await axios
+
+			//post the video file to server as FormData
+			const id = await axios
 				.post(`${process.env.REACT_APP_API_URL}/uploads`, formData, config)
 				.then(() => {
-					submitting = false; //complete submission
+					setSubmitStatus("processing"); //server and AI do the processing
+					console.log(submitStatus);
 				});
-			console.log(response);
+			//get result using the id
+			const response = await axios
+				.get(`${process.env.REACT_APP_API_URL}/result/${id}`)
+				.then(() => {
+					setSubmitStatus("idle"); //allow another submission
+					console.log(submitStatus);
+				});
+
+			ProcessResponse(response);
 		} catch (err) {
-			submitting = false;
+			setSubmitStatus("idle");
 			setStatus("error");
 			console.log(err);
 		}

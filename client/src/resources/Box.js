@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
+import { useTexture} from "@react-three/drei";
 function Box(props) {
 	// This reference gives us direct access to the THREE.Mesh object
 	const ref = useRef();
@@ -7,29 +8,30 @@ function Box(props) {
 	const [hovered, hover] = useState(false);
 	const [clicked, click] = useState(false);
 	// Subscribe this component to the render-loop, rotate the mesh every frame
-    let incr = 0.01;
-	let count = 0;
-    useFrame((state, delta) => {
-        incr = (count >2400) ? -incr : incr;
-        count = (count >2400) ? 0 : (count+1)
+	let incr = 0.005;
+	useFrame((state, delta) => {
 		ref.current.rotation.x += incr;
 		ref.current.rotation.y += incr;
 		ref.current.rotation.z += incr;
 	});
+	const textureProps = useTexture({
+		map: "img/logo.png",
+	});
 	// Return the view, these are regular Threejs elements expressed in JSX
 	return (
 		<mesh
-			{...props}
-			ref={ref}
-			scale={clicked ? 1.1 : 1}
-			onClick={event => click(!clicked)}
-			onPointerOver={event => hover(true)}
-			onPointerOut={event => hover(false)}
+		{...props}
+		ref={ref}
+		scale={clicked ? 1.1 : 1}
+		onClick={event => click(!clicked)}
+		onPointerOver={event => hover(true)}
+		onPointerOut={event => hover(false)}
 		>
 			<boxGeometry args={[3, 3, 3]} />
-			<meshStandardMaterial
-				color={hovered || clicked ? "#EE6C4D" : "#3D5A80"}
-			/>
+		<meshStandardMaterial
+			color={hovered || clicked ? "#FAFAFA" : "#AAAAAA"}
+			{...textureProps}
+		/>
 		</mesh>
 	);
 }
