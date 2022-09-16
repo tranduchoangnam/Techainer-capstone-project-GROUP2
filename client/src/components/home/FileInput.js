@@ -10,7 +10,7 @@ import ClickSVG from "../svgComponents/ClickSVG";
 import VideoSVG from "../svgComponents/VideoSVG";
 import FolderSVG from "../svgComponents/FolderSVG";
 // import { useForm } from "react-hook-form";
-function FileInput({ ProcessResponse }) {
+function FileInput({ setProcessing, ProcessResponse }) {
 	//useState
 	const [videoSource, setVideoSource] = useState("");
 	const [file, setFile] = useState(null);
@@ -63,21 +63,26 @@ function FileInput({ ProcessResponse }) {
 			};
 
 			//post the video file to server as FormData
-			const id = await axios
-				.post(`${process.env.REACT_APP_API_URL}/uploads`, formData, config)
-				.then(() => {
+			const res_id = await axios
+				.post(`${process.env.REACT_APP_API_URL}/video`, formData, config)
+				.then(async id => {
 					setSubmitStatus("processing"); //server and AI do the processing
+					setProcessing(true);
 					console.log(submitStatus);
+					console.log(id);
+					const response = await axios
+						.get(`${process.env.REACT_APP_API_URL}/result/${id.data}`)
+						.then(response => {
+							console.log(response.data);
+							setSubmitStatus("idle"); //allow another submission
+							setProcessing(false);
+							console.log(submitStatus);
+							ProcessResponse(response.data);
+						});
+					console.log(response);
 				});
+			console.log(res_id);
 			//get result using the id
-			const response = await axios
-				.get(`${process.env.REACT_APP_API_URL}/result/${id}`)
-				.then(() => {
-					setSubmitStatus("idle"); //allow another submission
-					console.log(submitStatus);
-				});
-
-			ProcessResponse(response);
 		} catch (err) {
 			setSubmitStatus("idle");
 			setStatus("error");
