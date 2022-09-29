@@ -11,20 +11,22 @@ function Member() {
 	})[0]; //get the first element of the array
 
 	console.log(result);
-	let { name, department, details } = result;
+	let { name, department, details, imageSrc } = result;
+
 	return (
 		<div
-			className=" items-center justify-center flex flex-col
-						
-                        text-xl font-semibold"
+			className=" items-center justify-center flex flex-col gap-5
+						p-5 bg-main-blue-ice/80 w-2/3 rounded-lg
+                        text-xl font-semibold text-main-blue-dark"
 		>
-			{id}
-			<div>
-				<img src={require(null || "../../resources/logo.png")} alt="img" className="h-auto" />
-				<div>Name: {name}</div>
-				<div>Department: {department}</div>
-				<div>Detail: {details}</div>
-			</div>
+			<img
+				src={require(`${/*imageSrc || */`../../resources/logo.png`}`)}
+				alt="img"
+				className="h-28"
+			/>
+			<div className="text-4xl font-bold ">{name}</div>
+			<div className="text-xl font-bold">Department: {department}</div>
+			<div>{details}</div>
 		</div>
 	);
 }

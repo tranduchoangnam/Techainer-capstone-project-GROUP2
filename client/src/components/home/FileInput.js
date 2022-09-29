@@ -9,7 +9,6 @@ import MediaRecorder from "./MediaRecorder";
 import ClickSVG from "../svgComponents/ClickSVG";
 import VideoSVG from "../svgComponents/VideoSVG";
 import FolderSVG from "../svgComponents/FolderSVG";
-// import { useForm } from "react-hook-form";
 function FileInput({ setProcessing, ProcessResponse }) {
 	//useState
 	const [videoSource, setVideoSource] = useState("");
@@ -18,6 +17,8 @@ function FileInput({ setProcessing, ProcessResponse }) {
 	const [status, setStatus] = useState("idle");
 	const [uploadMethod, setUploadMethod] = useState("default");
 	const [submitStatus, setSubmitStatus] = useState("idle");
+
+	
 
 	//update the current video registered
 	const handleVideoInputChange = e => {
@@ -67,7 +68,7 @@ function FileInput({ setProcessing, ProcessResponse }) {
 				.post(`${process.env.REACT_APP_API_URL}/video`, formData, config)
 				.then(async id => {
 					setSubmitStatus("processing"); //server and AI do the processing
-					setProcessing(true);
+					setProcessing(() => {return true})
 					console.log(submitStatus);
 					console.log(id);
 					const response = await axios
@@ -75,7 +76,7 @@ function FileInput({ setProcessing, ProcessResponse }) {
 						.then(response => {
 							console.log(response.data);
 							setSubmitStatus("idle"); //allow another submission
-							setProcessing(false);
+							setProcessing(() => {return false})
 							console.log(submitStatus);
 							ProcessResponse(response.data);
 						});
