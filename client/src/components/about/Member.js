@@ -10,8 +10,7 @@ function Member() {
 		return id === result_id;
 	})[0]; //get the first element of the array
 
-	console.log(result);
-	let { name, department, details, imageSrc } = result;
+	let { name, department, details} = result;
 
 	return (
 		<div
@@ -20,9 +19,9 @@ function Member() {
                         text-xl font-semibold text-main-blue-dark"
 		>
 			<img
-				src={require(`${/*imageSrc || */`../../resources/logo.png`}`)}
+				src={require(`../../resources/images/${Normalize(name)}.png`)}
 				alt="img"
-				className="h-28"
+				className="h-60 rounded-lg"
 			/>
 			<div className="text-4xl font-bold ">{name}</div>
 			<div className="text-xl font-bold">Department: {department}</div>

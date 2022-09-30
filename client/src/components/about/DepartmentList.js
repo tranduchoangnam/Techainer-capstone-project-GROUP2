@@ -1,7 +1,6 @@
 import React from "react";
 import Department from "./Department";
 import BoxComponent from "./BoxComponent";
-
 function DepartmentList({ softwareList, aiList }) {
 	return (
 		<div
