@@ -11,8 +11,14 @@
 # production
 /build
 
+# exclude everything inside uploads
+upload/*
+# exception to the rule to make sure there's always an upload folder
+!uploads/.gitkeep 
+
 # misc
 .DS_Store
+/uploads
 .env.local
 .env.development.local
 .env.test.local
