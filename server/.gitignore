@@ -12,7 +12,7 @@
 /build
 
 # exclude everything inside uploads
-upload/*
+uploads/*
 # exception to the rule to make sure there's always an upload folder
 !uploads/.gitkeep 
 
