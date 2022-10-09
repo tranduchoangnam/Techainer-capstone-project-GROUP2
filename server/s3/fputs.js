@@ -1,8 +1,8 @@
 import AWS from "aws-sdk";
 import Fs from "fs";
 var s3 = new AWS.S3({
-  accessKeyId: "1RNpWskQu7iHHTGW",
-  secretAccessKey: "jZSnVHWt4g0GkiLqPO59IdHbtwIRfIcx",
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   endpoint: "s3.techainer.com",
   s3ForcePathStyle: true,
   signatureVersion: "v4",

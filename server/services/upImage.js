@@ -3,18 +3,18 @@ import { PrismaClient } from "@prisma/client";
 import cropImage from "./cropObject.js";
 import AWS from "aws-sdk";
 var s3 = new AWS.S3({
-  accessKeyId: "1RNpWskQu7iHHTGW",
-  secretAccessKey: "jZSnVHWt4g0GkiLqPO59IdHbtwIRfIcx",
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   endpoint: "s3.techainer.com",
   s3ForcePathStyle: true,
   signatureVersion: "v4",
 });
 const prisma = new PrismaClient();
 const upImage = async (result, id) => {
-  let data = result.output
+  let data = result.output;
   for (var keyFrame in data) {
     //handle json data
-    console.log(data[keyFrame])
+    console.log(data[keyFrame]);
     var faces = data[keyFrame];
     if (data[keyFrame] != null) {
       for (var face in faces) {
@@ -22,8 +22,7 @@ const upImage = async (result, id) => {
         var label = value.label;
         var coor = value.coordinates;
         //console.log(label, coor[1]);
-        console.log(value)
-  
+        console.log(value);
         //create prisma
         let frame = await prisma.frame.findUnique({
           where: {
@@ -55,11 +54,11 @@ const upImage = async (result, id) => {
         let nameImage = `${keyFrame}_${face}_${id}.jpg`;
         await cropImage(originalImage, coor, nameImage, id);
         let croppedImage = `./frames/${id}/${nameImage}.jpg`;
-  
+
         //upload to s3
         let result = await uploadFile(croppedImage, nameImage);
         console.log(result);
-  
+
         //create access url
         var urlFinal = "";
         var params = { Bucket: result.Bucket, Key: result.Key };
