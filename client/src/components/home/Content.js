@@ -47,6 +47,8 @@ function Content() {
 					>
 						<LoadingSpinner />
 						<div>🤖 The AI is processing...</div>
+						<div className="text-main-orange-light">Longer videos may take longer</div>
+
 					</div>
 				) : (
 					<ImageGallery resultList={resultList} />

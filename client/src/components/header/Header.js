@@ -10,7 +10,7 @@ function Header() {
 			<nav className="fixed right-10">
 				<ul className="flex flex-row text-2xl font-bold text-main-blue-ice">
 					<NavOption path={"/"} name={"Home"}/>
-					<NavOption path={"/about"} name={"About us"}/>
+					<NavOption path={"/about"} name={"About"}/>
 					{/* <NavOption path={"/notexist"} name={"A not-exist-page"}/> */}
 				</ul>
 			</nav>
