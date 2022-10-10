@@ -12,9 +12,12 @@ var s3 = new AWS.S3({
 const prisma = new PrismaClient();
 const upImage = async (result, id) => {
   let data = result.output;
+  console.log(data);
+  let count = 0;
   for (var keyFrame in data) {
     //handle json data
-    console.log(data[keyFrame]);
+    count++;
+    console.log("key no.",count,data[keyFrame]);
     var faces = data[keyFrame];
     if (data[keyFrame] != null) {
       for (var face in faces) {
@@ -51,7 +54,7 @@ const upImage = async (result, id) => {
         const keyFrameNumber = Number(keyFrame) / 15 + 1;
         var originalImage = `./frames/${id}/screenshot-${keyFrameNumber}.jpg`;
         //console.log(originalImage, coor, keyFrameNumber, face, id);
-        let nameImage = `${keyFrame}_${face}_${id}.jpg`;
+        let nameImage = `${keyFrame}_${face}_${id}`;
         await cropImage(originalImage, coor, nameImage, id);
         let croppedImage = `./frames/${id}/${nameImage}.jpg`;
 

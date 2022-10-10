@@ -1,5 +1,5 @@
 from mlchain.base import ServeModel
-from app_model import Model
+from app_model_ver2 import Model
 from mlchain.server import FlaskServer
 
 model = Model()
