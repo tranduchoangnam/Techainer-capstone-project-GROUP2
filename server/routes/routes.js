@@ -9,7 +9,7 @@ import cors from "cors";
 
 const router = express.Router();
 router.use(cors({
-  origin: "http://localhost:3000"
+  origin: process.env.CLIENT_URL,
 }))
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

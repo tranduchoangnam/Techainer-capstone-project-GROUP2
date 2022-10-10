@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import FormData from "form-data";
 import fs from "fs";
-import upImage from "./upImage.js"
+import upImage from "./upImage.js";
 ffmpeg.setFfprobePath(ffprobePath.path);
 ffmpeg.setFfmpegPath(ffmpegPath.path);
 
@@ -24,7 +24,7 @@ const video = async (req, res) => {
   formData.append("video", video);
   formData.append("export_rate", export_rate);
   const result = await axios.post(
-    "http://localhost:4000/call/masked_video",
+    `${process.env.AI_API_URL}/call/masked_video`,
     formData,
     {
       headers: {
@@ -35,7 +35,7 @@ const video = async (req, res) => {
       },
     }
   );
-  console.log(JSON.parse(JSON.stringify(result.data)))
+  console.log(JSON.parse(JSON.stringify(result.data)));
   // res.json(result.data);
 
   fs.mkdir(`./frames/${id}`, { recursive: true }, (err) => {
@@ -55,9 +55,7 @@ const video = async (req, res) => {
       id: id,
     },
   });
-  await upImage(JSON.parse(JSON.stringify(result.data)), id)
+  await upImage(JSON.parse(JSON.stringify(result.data)), id);
   res.json(id);
 };
-export default video; 
-
-
+export default video;
