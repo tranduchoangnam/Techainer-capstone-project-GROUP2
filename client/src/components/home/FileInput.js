@@ -23,9 +23,12 @@ function FileInput({ setProcessing, ProcessResponse }) {
     try {
       const videoFile = e.target ? e.target.files[0] : e;
       if (!videoFile) return;
+      if (videoFile.size / 10e6 > 50)
+        return window.alert("Please upload a video smaller than 50MB");
+      console.log("vid size", videoFile.size);
       setFile(videoFile);
-      console.log("videoFile:");
-      console.log(videoFile);
+      // console.log("videoFile:");
+      // console.log(videoFile);
 
       var url = URL.createObjectURL(videoFile);
 
