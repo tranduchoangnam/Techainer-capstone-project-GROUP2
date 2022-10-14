@@ -12,8 +12,8 @@ const cropImage = async (originalImage, coor, name, id) => {
 		.then(function (new_file_info) {
 			console.log("Image cropped and saved");
 		})
-		.catch(function (err) {
-			console.log("An error occured");
+		.catch(err => {
+			throw err;
 		});
 };
 export default cropImage;
