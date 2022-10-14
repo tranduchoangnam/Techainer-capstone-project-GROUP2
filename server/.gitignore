@@ -12,7 +12,7 @@
 /build
 
 # exclude everything inside these folders
-uploads/*
+/uploads/*
 frames/*
 
 # exception to the rule to make sure there's always an upload folder
@@ -20,7 +20,6 @@ frames/*
 
 # misc
 .DS_Store
-/uploads
 .env.local
 .env.development.local
 .env.test.local

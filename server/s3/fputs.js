@@ -21,3 +21,4 @@ export function uploadFile(file, name) {
     })
     .promise();
 }
+ 

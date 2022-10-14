@@ -8,23 +8,25 @@ import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
 
 const router = express.Router();
-router.use(cors({
-  origin: process.env.CLIENT_URL,
-}))
+router.use(
+	cors({
+		origin: process.env.CLIENT_URL,
+	})
+);
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname +
-        Date.now() +
-        "-" +
-        Math.round(Math.random() * 1e9) +
-        ".mp4"
-    );
-  },
+	destination: function (req, file, cb) {
+		cb(null, "uploads/");
+	},
+	filename: function (req, file, cb) {
+		cb(
+			null,
+			file.fieldname +
+				Date.now() +
+				"-" +
+				Math.round(Math.random() * 1e9) +
+				".mp4"
+		);
+	},
 });
 
 const upload = multer({ storage: storage });
