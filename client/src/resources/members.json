@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Nguyễn Trực Cường",
+    "department": "Software",
+    "details": "Sinh ngày 17/01/2003. Hiện đang là sinh viên năm 2 ngành Công nghệ thông tin Việt-Nhật tại Đại học Bách Khoa Hà Nội. \nSở hữu IELTS 7.5 (2021), Thành viên Vietcode S5 (2021), \nĐảm nhiệm phần Front-end của dự án"
+  },
+  {
+    "name": "Trần Đức Hoàng Nam",
+    "department": "Software",
+    "details": "Sinh ngày 20/02/2003. Hiện đang là sinh viên năm 2 ngành Công nghệ thông tin Việt-Nhật tại Đại học Bách Khoa Hà Nội. \nĐạt giải Nhất thành phố Hà Nội học sinh giỏi Tin năm 2021 \nĐảm nhiệm phần Back-end của dự án"
+  },
+  {
+    "name": "Lê Trần Thắng",
+    "department": "Software",
+    "details": "Sinh viên năm 3 ngành KH Dữ liệu & Trí tuệ nhân tạo tại Đại học Bách khoa Hà Nội.\nĐảm nhiệm phần Back-end của dự án"
+  },
+  {
+    "name": "Trịnh Văn Chiến",
+    "department": "AI",
+    "details": "Sinh ngày: 17/06/2002 , cung hoàng đạo: Song Tử, hiện tại đang là sinh viên trường Đại học Bách Khoa Hà Nội, chuyên ngành Khoa học máy tính(chương trình tài năng) \nLà thủ khoa tỉnh Hải Dương kì thi thpt quốc gia năm 2020, top 25 toàn quốc điểm thi khối A \nLà trưởng nhóm đồng thời đảm nhiệm mảng AI của dự án"
+  },
+  {
+    "name": "Cù Minh Hoàng",
+    "department": "AI",
+    "details": "Sinh ngày: 24/09/2002. Hiện đang là sinh viên năm 3 trường Đại học Bách khoa Hà Nội ngành Công nghệ thông tin Việt Nhật. \nChủ nhiệm CLB Hỗ trợ Học tập  \nĐảm nhiệm mảng AI của dự án"
+  },
+  {
+    "name": "Hồ Minh Khôi",
+    "department": "AI",
+    "details": "Sinh viên năm 3 ngành KH Dữ liệu & Trí tuệ nhân tạo tại Đại học Bách khoa Hà Nội, đảm nhiệm mảng AI của dự án"
+  }
+]
